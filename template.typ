@@ -12,6 +12,7 @@
   font: ("Source Sans Pro", "Source Sans 3", "Microsoft YaHei"),
   heading-font: ("Microsoft YaHei"),
   color: rgb("#728497"),
+  lang: "zh",
   body
 ) = {
   
@@ -80,6 +81,7 @@
 
   grid(columns: (auto, 1fr, auto),
    [
+    #if lang == "zh" [
     #block(below: 2em)[ ]
     #strong[#text(fill: color, size: 20pt)[#name]]
 
@@ -87,6 +89,12 @@
     #strong[#text(fill: black, size: 16pt)[#first-name]]
     #strong[#text(fill: color, size: 16pt)[#last-name]]
     ]
+    ] else [
+    #block(below: 2em)[ ]
+    #strong[#text(fill: black, size: 20pt)[#first-name]]
+    #strong[#text(fill: color, size: 20pt)[#last-name]]
+    ]
+  
 
     #phone #sym.space  #sym.dot.c #sym.space #email
     
@@ -128,7 +136,16 @@
     below: 0.7em,
   )
   grid(columns: (1fr, 7fr),
-  text(weight: "bold")[#left],
-  right
+    text(weight: "bold")[#left],
+    right
+  )
+}
+
+#let list-entry-long(left, right) = {
+  set block(
+    below: 0.7em,
+  )
+  grid(columns: (1fr, 6fr),
+    text()[#left], right
   )
 }
